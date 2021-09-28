@@ -1,2 +1,2 @@
-# Invigilator
-Invigilator- The discord study bot.
+# Invi
+Invi- The discord study bot.
