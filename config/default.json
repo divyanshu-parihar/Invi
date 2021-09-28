@@ -1,9 +1,0 @@
-{
-    "app":{
-        "token":"ODkyMzA1NDc2MzM3OTQ2NjM1.YVK-Ow.MHoUo6B3Wq-wu0i9iEHG5KTApVg",
-        "database":{
-            "string":"mongodb://127.0.0.1:27017/Invi"
-        }
-
-    }
-}
