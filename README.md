@@ -1,2 +1,2 @@
-# Bender
-Bender- The discord study bot.
+# Invigilator
+Invigilator- The discord study bot.
