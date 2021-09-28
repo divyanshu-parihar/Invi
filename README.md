@@ -1,2 +1,2 @@
 # Invi
-Invi- The discord study bot.
+Invi- open-source discord study bot.
