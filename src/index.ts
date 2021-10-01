@@ -39,19 +39,18 @@ const client = new Client({
 
 client.on("messageCreate", async (message:any) => {
   //any type due to config module
-  const token:any= config.get('app.token');
+  const prefix:any = config.get('app.prefix');
   if (
     message.channel.type === "dm" ||
     message.author.bot ||
-   !message.content.startsWith((config.get('app.prefix')))
+   !message.content.startsWith(prefix)
   )
     return ;
   // message.member = await message.guild.fetchMember(message.author);
 
   const args = message.content.split(/ +/);
   // if (args.length < 1) return;
-  const command = args.shift().toLowerCase().slice(token.length);
-  console.log(command)
+  const command = args.shift().toLowerCase().slice(prefix.length);
   const commandFile = commands.find((_r, n) => n.includes(command));
   if (!commandFile) return;
   else
