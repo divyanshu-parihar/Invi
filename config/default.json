@@ -3,7 +3,7 @@
     "database": {
       "string": "mongodb://127.0.0.1:27017/Invi-db"
     },
-    "token": "ODkyMzA1NDc2MzM3OTQ2NjM1.YVK-Ow.rExjWg7GUiBOBWVbcoSYIZvAW6k",
+    "token": "",
     "prefix": "?in-",
     "roleName":"studying",
     "roleId": "893458318138425364",
