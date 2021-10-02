@@ -1,11 +1,11 @@
 {
   "app": {
     "database": {
-      "string": "mongodb://127.0.0.1:27017/Ivi-db"
+      "string": "mongodb://127.0.0.1:27017/<your-name>"
     },
-    "token": "ODkyMzA1NDc2MzM3OTQ2NjM1.YVK-Ow.SGQFfusFvduNa9gzUhvA_z52dn0",
+    "token": "",
     "prefix": "?in",
-    "roleName":"studying",
-    "roleId": "893458318138425364" 
+    "roleName":"",
+    "roleId": "" 
   }
 }

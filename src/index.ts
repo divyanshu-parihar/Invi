@@ -4,7 +4,6 @@ import { readdir } from "fs";
 import config from "config";
 import Collection from "@discordjs/collection";
 
-
 //setting node_env
 process.env.NODE_ENV = "dev";
 export interface runEvent {
@@ -13,7 +12,10 @@ export interface runEvent {
   args: string[];
   dev: boolean;
 }
-const dev = process.env.NODE_ENV == "dev" ? true : false;
+const dev =
+  process.env.NODE_ENV == "dev" || process.env.NODE_ENV == "local"
+    ? true
+    : false;
 const commands: Collection<string[], (event: runEvent) => any> =
   new Collection();
 
@@ -30,22 +32,22 @@ readdir("./src/commands", (err, allFiles) => {
         run: (event: runEvent) => any;
       };
       commands.set(props.names, props.run);
-};
+    }
 });
 
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
-client.on("messageCreate", async (message:any) => {
+client.on("messageCreate", async (message: any) => {
   //any type due to config module
-  const prefix:any = config.get('app.prefix');
+  const prefix: any = config.get("app.prefix");
   if (
     message.channel.type === "dm" ||
     message.author.bot ||
-   !message.content.startsWith(prefix)
+    !message.content.startsWith(prefix)
   )
-    return ;
+    return;
   // message.member = await message.guild.fetchMember(message.author);
 
   const args = message.content.split(/ +/);
