@@ -1,4 +1,4 @@
-config/prod
+config/Local.json
 # Logs
 logs
 *.log
