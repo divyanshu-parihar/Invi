@@ -45,8 +45,9 @@ client.on("messageCreate", async (message:any) => {
     message.author.bot ||
    !message.content.startsWith(prefix)
   )
-    return ;
-  // message.member = await message.guild.fetchMember(message.author);
+  return ;
+  const channels:any = config.get('app.channels');
+  if(!channels.includes(message.channel.id)) return ;
 
   const args = message.content.split(/ +/);
   // if (args.length < 1) return;
