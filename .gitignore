@@ -1,4 +1,4 @@
-config/Local.json
+config/local.json
 # Logs
 logs
 *.log
