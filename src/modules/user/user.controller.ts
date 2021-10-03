@@ -1,24 +1,41 @@
 import User, { UserType } from "./user.schema";
 
 class UserController {
-  static async getAllUsers(): Promise<Array<UserType>> {
-    const user: Array<UserType> = await User.find({});
+  static async getUserById({discordId}:any): Promise<
+    | (UserType & {
+        _id: any;
+      })
+    | null
+  > {
+    let user:
+      | (UserType & {
+          _id: any;
+        })
+      | null;
+    try {
+      user = await User.findOne({ discordId });
+    } catch (e) {
+      return null;
+    }
     return user;
+  }
+  static async getAllUsers(): Promise<Array<UserType>> {
+    const users: Array<UserType> = await User.find({});
+    return users;
   }
   static async createUser({
     discordId,
     name,
     current,
     vc,
-  }: UserType): Promise<UserType> {
-    const user: UserType = await User.findOneAndUpdate({
-      discordId,
-      name,
-      current,
-      vc,
-    },{
-      new:true
-    });
+  }: any): Promise<UserType> {
+    const user: any = new User({ discordId, name, current, vc });
+    user.save();
+    return user;
+  }
+
+  static async deleteUser({ discordId }: any) {
+    const user: any = User.findOneAndDelete({ discordId });
     return user;
   }
 }

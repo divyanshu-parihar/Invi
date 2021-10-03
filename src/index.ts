@@ -1,30 +1,24 @@
-const { Client, Intents, Message } = require("discord.js");
-import intialinitializeMongoDB from "./services/database/index";
-import { readdir } from "fs";
-import config from "config";
-import Collection from "@discordjs/collection";
+const { Client, Intents, Message } = require('discord.js');
+import intialinitializeMongoDB from './services/database/index';
+import { readdir } from 'fs';
+import config from 'config';
+import Collection from '@discordjs/collection';
 
 //setting node_env
-process.env.NODE_ENV = "dev";
+process.env.NODE_ENV = 'dev';
 export interface runEvent {
   message: typeof Message;
   client: typeof Client;
   args: string[];
   dev: boolean;
 }
-const dev =
-  process.env.NODE_ENV == "dev" || process.env.NODE_ENV == "local"
-    ? true
-    : false;
-const commands: Collection<string[], (event: runEvent) => any> =
-  new Collection();
+const dev = process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == 'local' ? true : false;
+const commands: Collection<string[], (event: runEvent) => any> = new Collection();
 
-readdir("./src/commands", (err, allFiles) => {
+readdir('./src/commands', (err, allFiles) => {
   if (err) console.log(err);
-  let files = allFiles.filter(
-    (f) => f.split(".").pop() === (dev ? "ts" : "js")
-  );
-  if (files.length <= 0) console.log("No commands found!");
+  let files = allFiles.filter((f) => f.split('.').pop() === (dev ? 'ts' : 'js'));
+  if (files.length <= 0) console.log('No commands found!');
   else
     for (let file of files) {
       const props = require(`./commands/${file}`) as {
@@ -39,16 +33,11 @@ const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
-client.on("messageCreate", async (message: any) => {
+client.on('messageCreate', async (message: any) => {
   //any type due to config module
-  const prefix: any = config.get("app.prefix");
-  if (
-    message.channel.type === "dm" ||
-    message.author.bot ||
-    !message.content.startsWith(prefix)
-  )
-    return;
-  const channels: any = config.get("app.channels");
+  const prefix: any = config.get('app.prefix');
+  if (message.channel.type === 'dm' || message.author.bot || !message.content.startsWith(prefix)) return;
+  const channels: any = config.get('app.channels');
   if (!channels.includes(message.channel.id)) return;
 
   const args = message.content.split(/ +/);
@@ -66,13 +55,13 @@ client.on("messageCreate", async (message: any) => {
 });
 
 if (dev) {
-  client.on("debug", (e: runEvent) => {
+  client.on('debug', (e: runEvent) => {
     console.log(e);
   });
 }
 
-client.on("ready", () => {
+client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 intialinitializeMongoDB();
-client.login(config.get("app.token"));
+client.login(config.get('app.token'));

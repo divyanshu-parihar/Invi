@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 export interface UserType extends mongoose.Document {
   discordId: number;
   name: string;
   current: boolean;
-  vc: "String" | undefined;
+  vc: 'String' | undefined;
 }
 
 const UserSchema = new mongoose.Schema({
@@ -15,10 +15,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  joined:{
-    type:Date,
-    required:true,
-    default:Date.now(),
+  joined: {
+    type: Date,
+    required: true,
+    default: Date.now(),
   },
   current: {
     type: Boolean,
@@ -26,9 +26,8 @@ const UserSchema = new mongoose.Schema({
   },
   vc: {
     type: Boolean,
-    required: true,
   },
 });
 
-const User = mongoose.model<UserType>("User", UserSchema);
+const User = mongoose.model<UserType>('User', UserSchema);
 export default User;

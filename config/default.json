@@ -5,9 +5,11 @@
     },
     "token": "<you token >",
     "prefix": "<your prefix for the bot>",
-    "roleName":"this will not have any effect whatsoever be your actual role namej",
+    "roleName": "this will not have any effect whatsoever be your actual role namej",
     "roleId": "role of you 'studying ' role. bot will give error without it.",
-    "channels":["list of channels id where you want bot to listen from all commands"],
-    "notify-channel":"id of you notification channel"
+    "channels": [
+      "list of channels id where you want bot to listen from all commands"
+    ],
+    "notify-channel": "id of you notification channel"
   }
 }
